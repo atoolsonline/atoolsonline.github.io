@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Json Parser Online-atools.online</title>
+    <meta name="keywords" content="Json,Json Parser Online,Json Formatter,Json Validator"/>
+    <meta name="description" content="Json,Json Parser Online,Json Formatter,Json Validator"/>
+    
+    <link rel="stylesheet" href="vendor/hui/static/h-ui/css/H-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="vendor/hui/lib/Hui-iconfont/1.0.8/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="vendor/hui/lib/html5shiv.js" />
+    <link rel="stylesheet" href="vendor/hui/lib/respond.min.js" />
+    <link rel="stylesheet" href="vendor/hui/lib/PIE_IE678.js" />
+    <![endif]-->
+        <link rel="stylesheet" href="vendor/jsonview/jquery.jsonview.css" />
+</head>
+<body>
+<div>
+    <header class="navbar-wrapper">
+        <div class="navbar navbar-black">
+            <div class="container cl">
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="index.html">atools.online</a>
+                <nav class="nav navbar-nav nav-collapse" role="navigation" id="Hui-navbar">
+                    <ul class="cl">
+                        <li><a href="index.html">Home</a></li>
+                        <li class=""><a href="jsonview.html">JSON Formatter & Validator</a></li>
+                        <li class="dropDown dropDown_hover">
+                            <a href="base64.html" class="dropDown_A">encoding / decoding <i class="Hui-iconfont Hui-iconfont-arrow2-bottom"></i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li><a href="base64/decode.html">Base64 Decoding</a></li>
+                                <li><a href="base64/encode.html">Base64 Encoding</a></li>
+                                <li><a href="url/decode.html">URL Decoding</a></li>
+                                <li><a href="url/encode.html">URL Encoding</a></li>
+                                <li><a href="html/decode.html">HTML Decoding</a></li>
+                                <li><a href="html/encode.html">HTML Encoding</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropDown dropDown_hover">
+                            <a href="sha.html" class="dropDown_A">Encrypt / Decryption <i class="Hui-iconfont Hui-iconfont-arrow2-bottom"></i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li><a href="md5.html">MD5 Encrypt</a></li>
+                                
+                                <li><a href="sha/sha1.html">SHA1 Encrypt</a></li>
+                                <li><a href="sha/sha256.html">SHA256 Encrypt</a></li>
+                                <li><a href="sha/sha384.html">SHA384 Encrypt</a></li>
+                                <li><a href="sha/sha512.html">SHA512 Encrypt</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropDown dropDown_hover">
+                            <a href="string.html" class="dropDown_A">String <i class="Hui-iconfont Hui-iconfont-arrow2-bottom"></i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li><a href="string/reverse.html">Reverse</a></li>
+                                <li><a href="string/uppercase.html">Uppercase</a></li>
+                                <li><a href="string/lowercase.html">Lowercase</a></li>
+                                <li><a href="string/ucwords.html">Ucwords</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="navbar-userbar hidden-xs">
+
+                </nav>
+            </div>
+        </div>
+    </header>
+        <div>
+        <div class="col-md-5" style="padding: 0">
+            <textarea id="source_str" class="textarea" style="height:550px;margin-top:5px;padding: 10px 10px 10px 20px;border:0;border-right:solid 1px #ddd;border-bottom:solid 1px #ddd;border-radius:0;resize: none; outline:none;" placeholder="Enter the json that you wish to parser" rows="" cols="" name=""></textarea>
+
+        </div>
+        <div class="col-md-7" style="padding: 0">
+            <div id="dest_str" contenteditable="true" style="margin-top:4px;height:550px;border-right:solid 1px #ddd;padding:0 10px 0 10px;border-bottom:solid 1px #ddd;border-radius:0;resize: none;overflow-y:scroll; outline:none;position:relative;font-weight:bold;">
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-20" style="clear: both">
+        <div class="container-fluid">
+        </div>
+    </footer>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.min.js"></script>
+<script type="text/javascript" src="vendor/hui/static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="vendor/jsonview/jquery.jsonview.js"></script>
+    <script type="text/javascript" src="vendor/jsonview/jsonlint.js"></script>
+    <script src="js/json2.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#source_str').on('keyup', function () {
+                var json_string = $.trim($('#source_str').val());
+                try {
+                    var current_json = jsonlint.parse(json_string);
+                    if (current_json) {
+                        $('#dest_str').JSONView(json_string);
+                    }
+                } catch (e) {
+                    var error = '<span style="color: #f1592a;font-weight:bold; ">' + e + '</span>';
+                    $('#dest_str').html(error);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
